@@ -6,17 +6,17 @@ class Server {
     constructor() {
         this.app = express();
         this.port = process.env.PORT;
-
+        this.server = require('http').createServer(this.app);
+        this.io = require('socket.io')(this.server);
         this.paths = {
-           
-        }
 
+        }
         //Middleware
         this.midleware();
         //Routes
         this.routes();
     }
-    
+
     midleware() {
         //CORS
         this.app.use(cors());
@@ -27,7 +27,7 @@ class Server {
         //this.app.use(this.paths.auth, require('../routes/auth'));
     }
     listen() {
-        this.app.listen(this.port, () => {
+        this.server.listen(this.port, () => {
             console.log(`Listening at http://localhost:${this.port}`)
         })
     }
