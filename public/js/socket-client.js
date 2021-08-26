@@ -1,2 +1,2 @@
 
-console.log('Impresion Consola');
+const socket = io();
