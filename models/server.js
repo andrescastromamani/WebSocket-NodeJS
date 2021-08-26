@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const { socketController } = require('../sockets/controller');
 
 class Server {
 
@@ -26,19 +27,11 @@ class Server {
         this.app.use(express.static('public'));
     }
     routes() {
-        //this.app.use(this.paths.auth, require('../routes/auth'));
+
     }
     //Socket
     socket() {
-        this.io.on('connection', (socket) => {
-            socket.on('disconnect', () => {
-            });
-            socket.on('emit-message', (payload) => {
-                console.log('Message: ', payload);
-                //Send Payload to Clients
-                this.io.emit('emit-message', payload);
-            });
-        });
+        this.io.on('connection', socketController);
     }
     listen() {
         this.server.listen(this.port, () => {
