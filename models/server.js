@@ -35,6 +35,9 @@ class Server {
             socket.on('disconnect', () => {
                 console.log('Socket disconnected', socket.id);
             });
+            socket.on('emit-message', (payload) => {
+                console.log('Message: ', payload);
+            });
         });
     }
     listen() {

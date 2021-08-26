@@ -18,7 +18,14 @@
             <span id="connected" class="text-success">Connected</span>
             <span id="disconnected" class="text-danger">Disconnected</span>
         </p>
-
+        <div class="row">
+            <div class="col">
+                <input type="text" id="message" class="form-control">
+            </div>
+            <div class="col">
+                <button id="btnSend" class="btn btn-primary">Send</button>
+            </div>
+        </div>
     </div>
     <script src="./socket.io/socket.io.js"></script>
     <script src="./js/socket-client.js"></script>
