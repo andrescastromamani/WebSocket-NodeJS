@@ -31,12 +31,12 @@ class Server {
     //Socket
     socket() {
         this.io.on('connection', (socket) => {
-            console.log('Socket connected', socket.id);
             socket.on('disconnect', () => {
-                console.log('Socket disconnected', socket.id);
             });
             socket.on('emit-message', (payload) => {
                 console.log('Message: ', payload);
+                //Send Payload to Clients
+                this.io.emit('emit-message', payload);
             });
         });
     }

@@ -7,15 +7,17 @@ const btnSend = document.querySelector('#btnSend');
 const socket = io();
 
 socket.on('connect', () => {
-    console.log('Connected to server');
     connect.style.display = '';
     disconnect.style.display = 'none';
 });
 socket.on('disconnect', () => {
-    console.log('Disconnected from server');
     connect.style.display = 'none';
     disconnect.style.display = '';
 });
+
+socket.on('emit-message', (payload) => {
+    console.log(payload);
+})
 
 btnSend.addEventListener('click', () => {
     const msg = message.value;
